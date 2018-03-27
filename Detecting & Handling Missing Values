@@ -1,0 +1,37 @@
+# Python code
+
+import pandas as pd
+import numpy as np
+
+# import a dataset of building permits issued in San Francisco
+sf_permits = pd.read_csv("../input/building-permit-applications-data/Building_Permits.csv")
+
+# Draw a short sample of the data set to have an idea what variables are there.
+sf_permits.sample(5)
+
+#Check size of the data
+sf_permits.shape
+
+# Check how how many missing data points are in each column
+ sf_permits.isnull().sum()
+ 
+# Calculate the percentage of missing values in each column
+sf_permits.isnull().sum()/sf_permits.shape[0]
+
+# Next step should be try to figure out why values are missing,
+# whether they are missing because they are not recorded or they do not exist at all.
+# Based on the reason, select the best way to handle NAs. Either change them to a specific value, such as 'None', 
+# or impute tham with a reasonable value you selected in terms of data.
+
+# If time is short, quick and dirty work is needed. Use the following to drop all the rows with NAs, or remove columns with NAs.
+# Be aware that useful information may be removed.
+# Drop all rows with NAs 
+df=sf_permits.dropna()
+
+# Or remove columns with NAs.
+df=sf_permits.dropna(axis=1)
+
+# Check how columns are left after dropping
+df.shape[1]
+
+# Filling in missing values if needed
