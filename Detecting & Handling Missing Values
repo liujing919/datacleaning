@@ -35,3 +35,13 @@ df=sf_permits.dropna(axis=1)
 df.shape[1]
 
 # Filling in missing values if needed
+# Fill all NAs with 'None'
+sf_permits.fillna('None')
+
+# Fill all NAs with 0 for numeric features
+sf_permits.fillna(0)
+
+# Fill all NAs with the next value in the same column
+sf_permits.fillna(method='bfill',axis=0)
+
+# More imputation need to be based on missing reasons, data collection process and data distribution.
