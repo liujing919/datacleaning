@@ -45,3 +45,16 @@ sf_permits.fillna(0)
 sf_permits.fillna(method='bfill',axis=0)
 
 # Other imputations may be needed based on missing reasons, data collection process and data distribution.
+
+# Select numeric features out, add columns indicate whether value are missing or not.
+sf_permits_num=sf_permits.select_dtypes(exclude='object')
+col_missing = [col for col in sf_permits_new1.columns
+                          if sf_permits_new1[col].isnull().any()]
+for col in col_missing:
+    sf_permits_num[col + 'was_missing'] = sf_permits_num[col].isnull()
+
+# Impute missing values with mean values in each column
+from sklearn.preprocessing import Imputer
+my_imputer=Imputer()
+sf_permits_new1 = pd.DataFrame(my_imputer.fit_transform(sf_permits_num),columns=sf_permits_num.columns)
+sf_permits_new1.head()
