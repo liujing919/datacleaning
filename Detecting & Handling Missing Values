@@ -44,4 +44,4 @@ sf_permits.fillna(0)
 # Fill all NAs with the next value in the same column
 sf_permits.fillna(method='bfill',axis=0)
 
-# More imputation need to be based on missing reasons, data collection process and data distribution.
+# Other imputations may be needed based on missing reasons, data collection process and data distribution.
